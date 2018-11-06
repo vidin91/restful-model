@@ -1,13 +1,13 @@
 import Express from 'express';
+import AppContext from './web/AppContext';
+import path from 'path';
 
-const App = Express();
 
-App.use('/test', (req, res) => {
-  res.send('Hello World!');
+const context = new AppContext({
+  app: Express(),
+  controllerContextPath: path.join(__dirname, 'api')
 });
 
-export default function start() {
-  App.listen(8080, () => {
-    console.log('Server successfully started at port 8080.')
-  });
+export default () => {
+  context.start();
 }
