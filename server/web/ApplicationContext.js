@@ -2,14 +2,16 @@ import Express from 'express';
 import fs from 'fs';
 import path from 'path';
 
-export default class AppContext {
+export default class ApplicationContext {
   constructor(config = {}) {
-    this.config = config;
     this.services = new Map();
+    this.config = config;
     this.app = config.app;
     this.port = config.port || 8080;
     this.controllerContextPath = config.controllerContextPath;
-    this.load();
+    if (this.controllerContextPath) {
+      this.load();
+    }
   }
 
   getService(name) {
@@ -25,6 +27,11 @@ export default class AppContext {
       return true;
     }
     return false;
+  }
+
+  registerController(controller) {
+    //TODO - validate that there are no route conflicts
+    controller(this.app);
   }
 
   load() {

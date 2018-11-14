@@ -1,12 +1,14 @@
 import Express from 'express';
-import AppContext from './web/AppContext';
+import ApplicationContext from './web/ApplicationContext';
 import path from 'path';
+import UserController from './api/UserController';
 
 
-const context = new AppContext({
-  app: Express(),
-  controllerContextPath: path.join(__dirname, 'api')
+const context = new ApplicationContext({
+  app: Express()
 });
+
+context.registerController(UserController);
 
 export default () => {
   context.start();
