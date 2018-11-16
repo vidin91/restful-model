@@ -3,7 +3,6 @@ import ApplicationContext from './web/ApplicationContext';
 import path from 'path';
 import UserController from './api/UserController';
 
-
 const context = new ApplicationContext({
   app: Express()
 });

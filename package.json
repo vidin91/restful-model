@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js",
+    "start-example": "nodemon --exec babel-node ./example/index.js",
     "start-otherway": "nodemon --exec babel-node index.js"
   },
   "repository": {
