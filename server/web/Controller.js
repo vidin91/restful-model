@@ -7,14 +7,15 @@ export default function Controller(config) {
   }
 
   return function (Target) {
-    return (app) => {
+    return (app, options) => {
       let router = new Router();
       app.use(config.path, router);
+      let ctx = new Target(options);
 
       Object.entries(Object.getOwnPropertyDescriptors(Target.prototype)).forEach(([key, desc]) => {
         if (desc.value.webContext) {
           let {path, method} = desc.value.webContext;
-          router[method](path, desc.value);
+          router[method](path, desc.value.bind(ctx));
         }
       });
     }

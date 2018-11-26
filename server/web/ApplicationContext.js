@@ -29,9 +29,9 @@ export default class ApplicationContext {
     return false;
   }
 
-  registerController(controller) {
+  registerController(controller, options) {
     //TODO - validate that there are no route conflicts
-    controller(this.app);
+    controller(this.app, options);
   }
 
   load() {
